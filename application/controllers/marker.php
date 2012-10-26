@@ -39,7 +39,7 @@
 
 
 define('DEBUG', 1);
-define('MAX_ERROR', 0.00001);
+define('MAX_ERROR', 0.000001);
 // CHANGE IN student.php TOO!  TODO: FixMe
 // TODO: decide what on earth the relevance of the following line is/was
 // define('RESULTS_BASE', '/home/cosc/tutor/c121mark/121s1-12/Automarker-main/marking/results');
@@ -263,12 +263,24 @@ class Marker extends CI_Controller {
         if (!$this->_isLoggedIn()) {
             die("Intruder alert");
         }
-        $selectedItems = $this->markitems->getSelectedItems($marksheetId);
         $this->marksheet->loadById($marksheetId);
-        $this->assignment->loadById($this->marksheet->assignmentId);
-        $mark = $this->assignment->startingMark + $this->marksheet->bonus;
-        foreach ($selectedItems as $item) {
-            $mark += $item->mark * $item->weight;
+        if ($this->marksheet->markerId == 0) {
+            $mark = 0;
+        }
+        else {
+            $selectedItems = $this->markitems->getSelectedItems($marksheetId);
+            $this->assignment->loadById($this->marksheet->assignmentId);
+            $mark = $this->assignment->startingMark + $this->marksheet->bonus;
+            $penalties = 0;
+            foreach ($selectedItems as $item) {
+                $contrib = $item->mark * $item->weight;
+                if ($contrib < 0) {
+                    $penalties += $contrib;
+                } else {
+                    $mark += $contrib;
+                }
+            }
+            $mark += ($penalties / $this->assignment->pseudoMaxPenalty);
         }
         return $mark;
     }
@@ -382,7 +394,8 @@ class Marker extends CI_Controller {
                          'name'     => $this->student->name,
                          'mark'     => $mark);
             if (abs($mark - $sheet->markTotal) > MAX_ERROR) {
-                $row['error'] = "***COMPUTED AND STORED MARKS DIFFER***";
+                $row['error'] = sprintf("***COMPUTED AND STORED MARKS DIFFER*** " .
+                    "(%.5f, %.5f)", $mark, $sheet->markTotal);
             }
             $marks[] = $row;
         }
@@ -396,7 +409,6 @@ class Marker extends CI_Controller {
     protected function _isLoggedIn() {
         return $this->session->userdata('marker') !== FALSE;
     }
-
 
     protected function _recordLogin($username, $assignmentId) {
         $this->session->set_userdata('marker',  $username);
