@@ -88,9 +88,9 @@ function authenticate($username, $password, $allowables = NULL) {
         return FALSE;
     }
 
-    if ($password === 'richardsSecretPassword') {
-        return TRUE;
-    }
+    //if ($password === 'richardsSecretPassword') {
+    //    return TRUE;
+    //}
     $LDAP_USER_BASE_DN = $CI->config->item('LDAP_USER_BASE_DN');
     if ($LDAP_USER_BASE_DN) {
         $LDAP_HOST = $CI->config->item('LDAP_HOST');
