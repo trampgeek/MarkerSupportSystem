@@ -26,28 +26,14 @@ div.banner h1 {
     font-size: 35px;
 }
 
-/* Admin page styles */
-input[name=markers] {
-    width: 29em;
-}
-
 /* Choose panel styles */
 .student-list-div {
     height: 60ex;
-    width: 55em;
+    width: 50em;
     overflow: auto;
     border: 1px solid gray;
     display:inline-block;
 }
-
-.student-list-table tr td:nth-child(4) {
-    text-align: right;
-}
-
-.student-list-table tr td:nth-child(5) {
-    text-align: center;
-}
-
 
 .student-list-div tr.selected td {
     background-color: #ff9090;
@@ -131,8 +117,13 @@ div.marklog h2 {
     padding-bottom: 4pt;
 }
 
-div.marklog p.comment, .extraComment, div.customcomments p {
-    padding-top: 4pt;
+div.marklog .comment, .extraComment, .marklog p, .marklog pre {
+    padding-top: 2pt;
+    padding-bottom: 2pt;
+}
+
+.commentCol li {
+    padding-top: 2pt;
 }
 
 h2.totalmark {
@@ -141,7 +132,7 @@ h2.totalmark {
 
 
 table.penalties td, table.categoryresults td {
-   border: 1px solid #ddd;
+   border: 1px solid #aaa;
    border-spacing: 0px;
    padding: 2px;
 }
@@ -189,7 +180,7 @@ tr.penalty td {
     color: #800000;
 }
 
-tr.comment td, tr.comment textarea {
+tr.comment td, tr.comment input {
     color: blue;
 }
 
@@ -255,7 +246,7 @@ select#username {
 /* Marklog styles */
 
 div.marklog * {
-    padding: 0px;
+    /* padding: 0px; */
     margin: 0px;
 }
 
