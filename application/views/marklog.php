@@ -1,4 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+require_once(APPPATH . '/views/Markdown/markdown.php');
+
 $assignment->loadById($marksheet->assignmentId);
 $student->loadById($marksheet->studentId);
 $assignmentId = $assignment->id;
@@ -37,13 +40,13 @@ else {
 
         foreach ($thisSheetsMarkItems as $markItem) {
             $comment = $markItem->commentOverride ? $markItem->commentOverride : $markItem->comment;
-            $comment = format($comment);
+            $comment = Markdown(htmlspecialchars($comment));
             $weight = $markItem->weight;
             $maxMark = $markItem->mark;
             $mark = sprintf("%.2f", $maxMark * $weight);
             $maxMark = sprintf("%.1f", $maxMark);
             if ($displayType == 'NONE') {
-                echo "<p class='comment'>$comment</p>\n";
+                echo "<div class='comment'>$comment</div>\n";
             }
             elseif ($maxMark == 0) {
                 echo "<tr><td class='noweight_comment'>$comment</td></tr>\n";
@@ -66,7 +69,7 @@ else {
     $customComment = $marksheet->comments;
     if ($customComment != '') {
         echo "<div class='customcomments'><h2 class='cathdr'>Further comments</h2>\n";
-        $customCommentFmtd = formatCustom($customComment);
+        $customCommentFmtd =  Markdown(htmlspecialchars($customComment));
         echo "$customCommentFmtd</div>\n";
     }
 
