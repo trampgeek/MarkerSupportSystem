@@ -40,7 +40,7 @@ else {
 
         foreach ($thisSheetsMarkItems as $markItem) {
             $comment = $markItem->commentOverride ? $markItem->commentOverride : $markItem->comment;
-            $comment = Markdown(htmlspecialchars($comment));
+            $comment = Markdown(format($comment));
             $weight = $markItem->weight;
             $maxMark = $markItem->mark;
             $mark = sprintf("%.2f", $maxMark * $weight);
@@ -69,7 +69,7 @@ else {
     $customComment = $marksheet->comments;
     if ($customComment != '') {
         echo "<div class='customcomments'><h2 class='cathdr'>Further comments</h2>\n";
-        $customCommentFmtd =  Markdown(htmlspecialchars($customComment));
+        $customCommentFmtd =  Markdown(format($customComment));
         echo "$customCommentFmtd</div>\n";
     }
 

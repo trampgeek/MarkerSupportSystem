@@ -1,10 +1,11 @@
 <?php
 /** Format a single style comment for HTML output.
- *  Currently just does htmlspecialchars.
+ *  Currently just does htmlspecialchars and prefixes underscores with
+ *  backslash to prevent markdown interpreting them as emphasis.
  */
 function format($s)
 {
-    return htmlspecialchars($s);
+    return str_replace('_', '\_', htmlspecialchars($s));
 }
 
 
