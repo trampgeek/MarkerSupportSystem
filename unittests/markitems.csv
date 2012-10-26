@@ -1,0 +1,15 @@
+General,Application launches correctly with url of form http://studweb.cosc.canterbury.ac.nz/<username>/classicmodels/index.php,1
+,"A useful and readable “about this site page” is provided, including what it does, bugs, design issues.",2
+,"Consistent appearance, with masterpage and a navigation menu",1
+,Some use of JavaScript and AJAX,1
+,Plausible use of session,1
+,Security guideline followed (mysqli_real_escape_string and htmlspecialchars used),1
+Product Browser,"Browser essentially works, providing all relevant info and no irrelevant info",4
+,Initial state is sensible,1
+,Page validates,1
+Order Browser,"Can browse orders, seeing all products and details for each order",3
+,"There is a single table of items, quantities, costs for each order item, and the total cost of the order is computed",2
+,Page validates,1
+Software engineering,"Overall design is ok, e.g. with different views, models etc in separate files",2
+,"Code readability (commenting, layout, adherence to PHP coding guidelines)",2
+Extra functionality,"Some extra functionality implemented, or some other sign of “going the extra mile”",2

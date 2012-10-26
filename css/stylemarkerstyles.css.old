@@ -1,0 +1,211 @@
+body {
+    padding-top: 0px;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: Lucida Grande, Verdana, Geneva, Sans-serif;
+    font-size:10pt;
+}
+
+.banner {
+    padding: 0px;
+    margin: 0px;
+    height: 75px;
+    width: 1800px;
+    float:left;
+    background-color:#017c8e;
+}
+div.banner h1 {
+    color: white;
+    margin:0px;
+    padding:15px;
+    font-size: 35px;
+}
+
+
+#comboBox {
+    font-size: 16pt;
+    color: #017c8e;
+    border: 1px solid green;
+}
+
+div.navbar {
+    font-size: 10pt;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    background-color: #e5e5e5;
+    width:1800px;
+}
+
+hr.navbar {
+    padding: 0px;
+    width: 1800px;
+}
+
+div.footer {
+    font-size: smaller;
+    padding-top: 2px;
+}
+
+div.footer p {
+    margin: 0px;
+    color: #666666;
+}
+
+hr {
+    margin:0px;
+    clear: both;
+}
+
+hr.spacer  {
+    margin-top: 10px;
+}
+
+h1 {
+    font-size: 18pt;
+    padding-top: 5pt;
+    color: #017C8E
+}
+
+h2 {
+    padding-top: 15px;
+    font-size: 12pt;
+    color: #017C8E
+}
+
+h4 {
+    color: black;
+}
+
+
+th {
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+td {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+div.marklog h2 {
+    padding-top: 12pt;
+    padding-bottom: 4pt;
+}
+
+div.marklog p.comment, div.customcomments p {
+    padding-top: 4pt;
+}
+
+h2.totalmark {
+    color: #804040;
+}
+
+table.penalties td {
+   border: 1px solid grey;
+   border-spacing: 0px;
+}
+
+table.penalties {
+   border-collapse: collapse;
+}
+
+td.category { 
+   border-style: none;
+   color: green;
+}
+
+td.deduction {
+    width: 30px;
+    text-align: center;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+input.weight {
+    width: 40px;
+    text-align: center;
+}
+
+tr.penalty td {
+    color: #800000;
+}
+
+tr.comment td, tr.comment input {
+    color: blue;
+}
+
+
+tr.reward td, tr.reward input {
+    color: green;
+}
+
+
+div.marking input.comment {
+    width: 600px;
+}
+
+div.marking input[type=submit], input[type=submit], button.abort {
+    margin-top: 8pt;
+    margin-right: 8pt;
+    padding: 3pt 5pt 3pt 5pt;
+    font-size: 12pt;
+    font-weight: bold;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: #eeeeee;
+}
+
+input[type=submit]:hover {
+    background-color: #ffcccc;
+}
+
+textarea.comments {
+    font-family: sans-serif;
+}
+
+p.error {
+    font-size: 12pt;
+    color: red;
+    font-style: bold;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    margin: 3px;
+}
+
+select#username {
+    font-family: monospace;
+    width: 200px;
+    background-color: #f0f0f0;
+}
+
+/* Marklog styles */
+
+div.marklog * {
+    padding: 0px;
+    margin: 0px;
+}
+
+div.marklog h1 {
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+div.marklog p.linebreak {
+    padding-top: 3px;
+}
+
+div.marklog p.comment {
+    padding-top: 12px;
+}
+
+div.marklog hr {
+    margin-top: 20px;
+}
+
+span.link {
+    color: blue;
+}
