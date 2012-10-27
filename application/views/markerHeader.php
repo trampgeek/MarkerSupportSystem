@@ -47,6 +47,8 @@ echo doctype('html');
                 echo anchor('marker', 'Home');
                 echo ' | ' . anchor('marker/printLogs', 'Print logs');
                 echo ' | ' . anchor('marker/exportMarks', 'Export marks');
+                echo ' | ' . anchor('marker/help', 'Tips');
+                echo ' | ' . anchor('marker/about', 'About');
                 echo ' | ' . anchor('marker/logout', 'Logout');
             }
             ?>

@@ -1,4 +1,3 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <div class='about'>
 <h1>A web-based marker-support System</h1>
 <h2>Goals</h2>
@@ -83,9 +82,9 @@ Administrators can also add/remove markers.</li></ol>
 </p><p>
 As usual with Code Igniter, the URL contains the controller name, so login URLs are
 <ul>
-<li>Administrators: <span class='link'>somewhere.canterbury.ac.nz/markingroot/index.php/admin</span></li>
-<li>Markers: <span class='link'>somewhere.canterbury.ac.nz/markingroot/index.php/marker</span></li>
-<li>Students: <span class='link'>somewhere.canterbury.ac.nz/markingroot/index.php/student</span></li>
+<li>Administrators: <span class='link'>somewhere.canterbury.ac.nz/markingroot/admin</span></li>
+<li>Markers: <span class='link'>somewhere.canterbury.ac.nz/markingroot/marker</span></li>
+<li>Students: <span class='link'>somewhere.canterbury.ac.nz/markingroot/student</span></li>
 </ul>
 However, 'student' is the default controller, so students need only be given the simpler URL of
 <span class='link'>somewhere.canterbury.ac.nz/markingroot</span> for viewing their mark logs.

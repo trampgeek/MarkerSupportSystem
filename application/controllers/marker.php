@@ -177,6 +177,20 @@ class Marker extends CI_Controller {
     }
 
 
+    public function help()
+    {
+        $this->_header("Help");
+        $this->load->view('help');
+    }
+
+
+    public function about()
+    {
+        $this->_header("About");
+        $this->load->view('about');
+    }
+
+
     // Process all the mark items to be found in the given list of form fields.
     private function processAllMarkitems($fields) {
         $penalties = 0;
@@ -257,12 +271,9 @@ class Marker extends CI_Controller {
         }
     }
 
-
-    public function computeMark($marksheetId)
+    // Compute and return the mark for the given marksheet.
+    private function computeMark($marksheetId)
     {
-        if (!$this->_isLoggedIn()) {
-            die("Intruder alert");
-        }
         $this->marksheet->loadById($marksheetId);
         if ($this->marksheet->markerId == 0) {
             $mark = 0;
