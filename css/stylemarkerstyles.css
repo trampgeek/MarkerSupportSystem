@@ -130,6 +130,10 @@ h2.totalmark {
     color: #804040;
 }
 
+div.tips li, div.about li {
+    padding-top: 4pt;
+}
+
 
 table.penalties td, table.categoryresults td {
    border: 1px solid #aaa;
