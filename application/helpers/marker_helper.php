@@ -5,7 +5,7 @@
  */
 function format($s)
 {
-    return str_replace('_', '\_', htmlspecialchars($s));
+    return str_replace('_', '\_', $s); // htmlspecialchars($s));
 }
 
 

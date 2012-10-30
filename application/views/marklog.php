@@ -2,6 +2,15 @@
 
 require_once(APPPATH . '/views/Markdown/markdown.php');
 
+function do_markdown($text, $safe=true) {
+    $parser = new Markdown_Parser;
+    if ($safe) {
+        $parser->no_markup = true;
+        $parser->no_entities = true;
+    }
+    return $parser->transform($text);
+}
+
 $assignment->loadById($marksheet->assignmentId);
 $student->loadById($marksheet->studentId);
 $assignmentId = $assignment->id;
@@ -40,7 +49,7 @@ else {
 
         foreach ($thisSheetsMarkItems as $markItem) {
             $comment = $markItem->commentOverride ? $markItem->commentOverride : $markItem->comment;
-            $comment = str_replace('\_', '_', Markdown(format($comment)));
+            $comment = str_replace('\_', '_', do_markdown(format($comment)));
             $weight = $markItem->weight;
             $maxMark = $markItem->mark;
             $mark = sprintf("%.2f", $maxMark * $weight);
@@ -69,7 +78,7 @@ else {
     $customComment = $marksheet->comments;
     if ($customComment != '') {
         echo "<div class='customcomments'><h2 class='cathdr'>Further comments</h2>\n";
-        $customCommentFmtd =  str_replace('\_', '_', Markdown(format($customComment)));
+        $customCommentFmtd =  str_replace('\_', '_', do_markdown(format($customComment)));
         echo "$customCommentFmtd</div>\n";
     }
 
