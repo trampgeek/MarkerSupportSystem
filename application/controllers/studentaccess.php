@@ -109,6 +109,8 @@ class Studentaccess extends CI_Controller {
                 'student'    => $this->student)
             );
             $this->load->view('footer');
+            $this->marksheet->nViews++;
+            $this->marksheet->update();
         }
 
     }

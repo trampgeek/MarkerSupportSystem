@@ -105,6 +105,9 @@ if ($assignment->id) { ?>
    <li>
    <a href="<?php echo site_url("admin/uploadMarkitems/{$assignment->id}"); ?>">Upload mark items</a>
     </li>
+   <li>
+   <a href="<?php echo site_url("admin/uploadExternalGrades/{$assignment->id}"); ?>">Upload external grade table</a>
+    </li>
 
 </ul>
 <?php

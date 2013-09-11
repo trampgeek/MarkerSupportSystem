@@ -15,6 +15,7 @@ class Marksheet extends CI_Model {
     public $comments;
     public $bonus;
     public $markTotal;  // Value computed when this sheet is saved (invalid if asst params change)
+    public $nViews;     // Count of how many times a student views their marks
 
 
     public function __construct() {
@@ -22,11 +23,12 @@ class Marksheet extends CI_Model {
     }
 
 
-    public function create($assignmentId, $studentId, $extraInfo) {
+    public function create($assignmentId, $studentId, $extraInfo, $markerId=0) {
         $this->db->insert('mark_sheets', array(
             'assignmentId' => $assignmentId,
             'studentId'    => $studentId,
-            'extraInfo'    => $extraInfo
+            'extraInfo'    => $extraInfo,
+            'markerId'     => $markerId
         ));
         $id = $this->db->insert_id();
         if ($id == 0) {
@@ -69,7 +71,8 @@ class Marksheet extends CI_Model {
                     'extraInfo',
                     'comments',
                     'bonus',
-                    'markTotal'))
+                    'markTotal',
+                    'nViews'))
                 ->from('mark_sheets')
                 ->where($where);
         $query = $this->db->get();
@@ -98,7 +101,8 @@ class Marksheet extends CI_Model {
             'extraInfo'=> $this->extraInfo,
             'comments' => $this->comments,
             'bonus'    => $this->bonus,
-            'markTotal'=> $this->markTotal
+            'markTotal'=> $this->markTotal,
+            'nViews'   => $this->nViews
         ));
     }
 
@@ -112,7 +116,7 @@ class Marksheet extends CI_Model {
         $this->db->order_by($sortBy);
         $this->db->select('mark_sheets.id as id, markerId, markTotal,' .
                           'students.username as username, studentId, '.
-                          'name, markers.username as marker, bonus')
+                          'name, markers.username as marker, bonus, nViews')
                  ->from('mark_sheets')
                  ->join('students', 'studentId = students.id')
                  ->join('markers', 'markerId = markers.id', 'left')

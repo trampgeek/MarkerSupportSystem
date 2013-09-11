@@ -1,7 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
 
 <div class='choose'>
-<h1>Upload CSV Spreadsheet of Mark Items</h1>
+<h1>Upload CSV Spreadsheet of External Marked Grades</h1>
+<p>*** NOT FOR GENERAL USE. ***</p>
 <table>
     <tr>
         <td>Course:</td>
@@ -21,11 +22,14 @@ if ($error) {
     echo "<p class='error'>$error</p>";
 }
 
-echo form_open_multipart('admin/uploadMarkitems/' . $assignment->id);
+echo form_open_multipart('admin/uploadExternalGrades/' . $assignment->id);
 ?>
-<p>Select a .csv spreadsheet with three columns: markItemCategory, markItemDescription
-and mark. The first row must contain a non-empty category. For all other rows,
-if a category is omitted the category of the previous row(s) is assumed.</p>
+<p>Select a .csv spreadsheet with the first row containing mark item ids
+(yes, the internal values for the mark item table!) in columns 3 onwards
+of row 1. Row 2 is ignored. Rows 3 on contain usernames in column 1 and
+actual marks for the mark items in the header row in columns 3 onwards.
+Marks must be fractional, i.e. in the range [0 - 1], and are multiplied
+by the max mark given for each mark item when displayed to the student.</p>
 <p>Select file: <input type='file' name='csvfile' /></p>
 <?php echo form_submit('Upload', 'Upload'); ?>
 </p>

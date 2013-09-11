@@ -1,7 +1,8 @@
 <?php
 /** Format a single style comment for HTML output.
- *  Currently just does htmlspecialchars and prefixes underscores with
+ *  Currently just prefixes underscores with
  *  backslash to prevent markdown interpreting them as emphasis.
+ *  [Removed htmlspecialchars as now done by markdown in 'safe' mode.]
  */
 function format($s)
 {

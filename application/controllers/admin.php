@@ -194,6 +194,28 @@ class Admin extends CI_Controller {
                 );
     }
 
+
+    /**
+     * Hacked together method to upload the data from an already-marked
+     * assignment into this database, for releasing results to students.
+     */
+    public function uploadExternalGrades($assignmentId)
+    {
+        if (!$this->_isLoggedIn()) {
+            die("Not logged in.");
+        }
+        $this->_uploadSpreadsheet(
+                $assignmentId,
+                'externalgradetable',
+                'uploadexternalgradetable',
+                array('student'   => $this->student,
+                      'marksheet' => $this->marksheet,
+                      'markitems' => $this->markitems)
+                );
+
+    }
+
+
     /** Unit test method just for testing upload of a spreadsheet of students
      *  Used only by unit tester.
      */
