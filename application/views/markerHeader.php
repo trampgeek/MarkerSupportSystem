@@ -11,12 +11,6 @@ echo doctype('html');
         <?php echo meta('Content-type', 'text/html; charset=utf-8', 'equiv'); ?>
         <title><?php echo $title; ?></title>
 
-        <script src="<?php echo base_url(); ?>scripts/js/jquery-1.7.2.min.js"></script>
-        <!--script src="<?php echo base_url(); ?>scripts/js/jquery-ui-1.8.23.custom.min.js"></script>
-        <script src="<?php echo base_url(); ?>scripts/combobox.js"></script>
-        <link rel="stylesheet" href="<?php echo base_url(); ?>scripts/css/smoothness/jquery-ui-1.8.23.custom.css" />
-        <link rel="stylesheet" href="<?php echo base_url(); ?>scripts/css/combobox.css" /-->
-
         <?php
         if ($scripts) {
             foreach ($scripts as $script) { ?>
