@@ -44,7 +44,11 @@
         ?>
     </table>
     </div>
-    <script type="text/javascript">$('#selected-list-div').scrollTop(<?php echo max(0, ($selectedRow - 5) * 20); ?>);</script>
+    <script type="text/javascript">
+        var selectedDiv = $('#selected-list-div');
+        var rowHeight = $('.student-list-table tr:first-child').height();
+        selectedDiv.scrollTop(<?php echo max(0, ($selectedRow - 5)); ?> * rowHeight);
+    </script>
 </p>
 </div>
 <?php include('footer.php'); ?>
