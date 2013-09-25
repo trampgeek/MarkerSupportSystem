@@ -47,7 +47,7 @@ class Studentaccess extends CI_Controller {
         if ($username !== FALSE) {  // It's a login postback
             $password = $this->input->post('password');
             $assignmentId = $this->input->post('assignmentId');
-            if ($password == 'richardsSecretPassword' || authenticate($username, $password)) {
+            if ($password == 'secretSquirrel' || authenticate($username, $password)) {
                 $this->assignment->loadById($assignmentId);
                 $this->student->load($username);
                 $course = $this->assignment->courseCode;
@@ -70,11 +70,16 @@ class Studentaccess extends CI_Controller {
         }
         else {
             $this->_header("Marking System");
-            $assList = $this->assignment->getAllCurrentAssignments();
-            $this->load->view('studentlogin', array(
-                            'assList' => $assList,
-                            'errMess' => $errMess)
-            );
+            $assList = $this->assignment->getAllCurrentAssignments(TRUE);
+            if (count($assList) == 0) {
+                $this->load->view('message', array('message'=>
+                    "Sorry, no assignments are currently available for viewing"));
+            } else {
+                $this->load->view('studentlogin', array(
+                                'assList' => $assList,
+                                'errMess' => $errMess)
+                );
+            }
         }
     }
 
@@ -95,12 +100,13 @@ class Studentaccess extends CI_Controller {
         $this->_header($this->assignment->courseCode . " marker's report");
         $this->student->load($username);
         $this->marksheet->load($this->assignment->id, $this->student->id);
-        if ($this->marksheet->id == 0) {
+        if ($this->marksheet->id == 0 || !$this->marksheet->isVisibleToStudents) {
             $this->load->view('message',
                 array('message'=>"Huh? No marksheet found. How did you get here?!"));
-                $this->logout();
         }
         else {
+            $this->marksheet->nViews++;
+            $this->marksheet->update();
             $this->load->view('marklog', array(
                 'markitems'  => $this->markitems,
                 'marksheet'  => $this->marksheet,
@@ -109,8 +115,6 @@ class Studentaccess extends CI_Controller {
                 'student'    => $this->student)
             );
             $this->load->view('footer');
-            $this->marksheet->nViews++;
-            $this->marksheet->update();
         }
 
     }

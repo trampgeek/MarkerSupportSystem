@@ -93,12 +93,15 @@ class Admin extends CI_Controller {
             $markers = $this->extractMarkers($this->input->post('markers'));
             $fields = array('courseCode', 'assignmentName', 'introduction',
                                 'startingMark', 'pseudoMaxPenalty', 'outOf',
-                                'markDisplayToStudent');
+                                'markDisplayToStudent', 'isVisibleToStudents');
             if ($id == 0) {
 
                 $dataFromForm = array();
                 foreach ($fields as $field) {
                     $dataFromForm[$field] = $this->input->post($field);
+                }
+                if ($dataFromForm['isVisibleToStudents'] == '') {
+                    $dataFromForm['isVisibleToStudents'] = 0;  // Unsuccessful checkbox
                 }
                 $id = $this->assignment->insert($dataFromForm);
                 if ($id == 0) {
@@ -204,8 +207,7 @@ class Admin extends CI_Controller {
         if (!$this->_isLoggedIn()) {
             die("Not logged in.");
         }
-        $this->_uploadSpreadsheet(
-                $assignmentId,
+        $this->_uploadSpreadsheet($assignmentId,
                 'externalgradetable',
                 'uploadexternalgradetable',
                 array('student'   => $this->student,
@@ -347,7 +349,7 @@ class Admin extends CI_Controller {
         if (!$this->_isLoggedIn()) {
             die("Not logged in.");
         }
-        $assignments = $this->assignment->getAllCurrentAssignments(FALSE);
+        $assignments = $this->assignment->getAllCurrentAssignments(FALSE, FALSE);
         $assignmentId = array_search($asstName, $assignments);
         if ($assignmentId === FALSE) {
             die("Couldn't match specified test assignment");

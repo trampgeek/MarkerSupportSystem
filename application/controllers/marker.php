@@ -102,7 +102,8 @@ class Marker extends CI_Controller {
             die("Intruder alert");
         }
 
-        $this->_header($this->assignment->courseCode . ' Assignment Marking');
+        $this->_header($this->assignment->courseCode . ' Assignment Marking',
+                array('jquery-1.8.2.min.js'));
         $this->load->view('choose', array(
             'marksheets'    =>  $this->marksheet->getAllMarksheets($this->assignment->id),
             'markers'       =>  $this->markers,
@@ -118,7 +119,7 @@ class Marker extends CI_Controller {
             return;
         }
         $this->_header($this->assignment->courseCode . ' marksheet', array(
-            'jquery-1.8.2.min.js', 'doMarking.js', 'autosize.js'));
+            'jquery-1.8.2.min.js', 'autosize.js', 'doMarking.js'));
         if (!$this->student->loadById($studentId)) {
             die("Oops. Non-existent student?!");
         }

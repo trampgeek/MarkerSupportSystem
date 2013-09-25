@@ -27,23 +27,13 @@ else {
         if (count($thisSheetsMarkItems) == 0) {
             continue;
         }
-        $firstMarkItem = $thisSheetsMarkItems[0];
-        $hasMarks = $firstMarkItem->mark != 0;
         echo "<h2 class='cathdr'>$categoryDesc</h2>\n";
 
         if ($displayType == 'FULL') {
-            if ($hasMarks) {
-                echo "<table class='categoryresults'><tr><th></th><th>Mark</th><th>Out of</th></tr>\n";
-            } else {
-                echo "<table class='categoryresults'><tr><th></th></tr>\n";
-            }
+            echo "<table class='categoryresults'><tr><th></th><th>Mark</th><th>Out of</th></tr>\n";
         }
         else if ($displayType == 'PARTIAL') {
-            if ($hasMarks) {
-                echo "<table class='categoryresults'><tr><th></th><th>Assessment</th></tr>\n";
-            } else {
-                echo "<table class='categoryresults'><tr><th></th></tr>\n";
-            }
+            echo "<table class='categoryresults'><tr><th></th><th>Assessment</th></tr>\n";
         }
 
         $hdrIsDone = FALSE;

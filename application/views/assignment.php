@@ -11,6 +11,7 @@ function mySetValue($field, $assignment) {
 
 $markersString = implode(", ", $markers);
 $errors = validation_errors();
+$checked = $assignment->isVisibleToStudents ? ' checked' : '';
 if ($errors) {
         echo "$errors\n";
 }
@@ -83,6 +84,11 @@ $a = $assignment;
     } ?>
 
         </select>
+    </td>
+</tr>
+<tr>
+    <td>Visible to students:</td>
+    <td><input type="checkbox" name="isVisibleToStudents" value="1"<?php echo $checked; ?> >
     </td>
 </tr>
 <tr>

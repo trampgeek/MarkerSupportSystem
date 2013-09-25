@@ -89,5 +89,6 @@ echo "</table>\n";
 </p>
 <?php echo form_close(); ?>
 </div>
+
 <?php include('footer.php'); ?>
 

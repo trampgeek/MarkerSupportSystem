@@ -59,9 +59,6 @@ class ExternalGradeTable extends CI_Model {
                         // Create marksheet, marked by markerid = 1 (who had better be the admin)
                         $marksheetId = $marksheetModel->create($assignmentId, $studentId, "", 1);
                     }
-                    else {
-                        $marksheetModel->markerId = 1;
-                    }
                     $markitemsModel->clearMarksheetMarkItems($marksheetId);
                     for ($i = 0; $i < $numMarkItems; $i++) {
                         $markItemId = $markItemIds[$i];

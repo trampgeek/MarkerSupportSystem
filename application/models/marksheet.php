@@ -62,10 +62,11 @@ class Marksheet extends CI_Model {
     // addition of deleted = 0). Returns the marksheetId or 0 if no such
     // marksheet found.
     private function _load($where) {
-        $where['deleted'] = 0;
+        $where['assignments.deleted'] = 0;
         $this->db->select(array(
                     'mark_sheets.id as id',
                     'assignmentId',
+                    'isVisibleToStudents',
                     'studentId',
                     'markerId',
                     'extraInfo',
@@ -74,7 +75,9 @@ class Marksheet extends CI_Model {
                     'markTotal',
                     'nViews'))
                 ->from('mark_sheets')
+                ->join('assignments', 'assignmentId=assignments.id')
                 ->where($where);
+
         $query = $this->db->get();
         if ($query->num_rows() == 0) {
             $this->id = 0;

@@ -17,6 +17,7 @@ class Assignment extends CI_Model {
     public $pseudoMaxPenalty;
     public $outOf;
     public $markDisplayToStudent;
+    public $isVisibleToStudents;
 
 
     public function __construct() {
@@ -65,15 +66,22 @@ class Assignment extends CI_Model {
 
     /** Returns an array of all non-deleted assignments created within the
      *  last six months, as an array of id => name mappings. Sorted
-     *  most recent first. Names are either just the assignment name (for
-     *  use in testing only) or the coursecode, a colon and space and the name
-     *  (usually) depending on the parameter.
+     *  most recent first.
+     *  If $isStudent is TRUE, only assignments visible to students are returned.
+     *  Names are either just the assignment name (for use in testing only)
+     *  or the coursecode, a colon and space and the name (usually)
+     *  depending on the second parameter.
      */
-    public function getAllCurrentAssignments($includeCourseInName = TRUE) {
+    public function getAllCurrentAssignments($isStudent = FALSE, $includeCourseInName = TRUE) {
         $result = array();
         $this->db->order_by('id desc');
-        $query = $this->db->get_where('assignments',
-                'deleted = 0 AND timestamp > DATE_SUB(NOW(), INTERVAL 6 MONTH)');
+        if ($isStudent) {
+            $where = 'isVisibleToStudents = 1 AND ';
+        } else {
+            $where = '';
+        }
+        $where .= 'deleted = 0 AND timestamp > DATE_SUB(NOW(), INTERVAL 6 MONTH)';
+        $query = $this->db->get_where('assignments', $where);
         foreach ($query->result() as $row) {
             $name = $row->assignmentName;
             if ($includeCourseInName) {
