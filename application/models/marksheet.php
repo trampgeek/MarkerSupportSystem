@@ -42,7 +42,7 @@ class Marksheet extends CI_Model {
      *  0 if not such marksheet exists.
      */
     public function loadById($marksheetId) {
-        $where = array('id' => $marksheetId);
+        $where = array('mark_sheets.id' => $marksheetId);
         return $this->_load($where);
     }
 
@@ -99,7 +99,7 @@ class Marksheet extends CI_Model {
     public function update()
     {
         if ($this->id == 0) die("Attempting to update a nonexistent mark sheet");
-        $this->db->where('id', $this->id)->update('mark_sheets', array(
+        $this->db->where('mark_sheets.id', $this->id)->update('mark_sheets', array(
             'markerId' => $this->markerId,
             'extraInfo'=> $this->extraInfo,
             'comments' => $this->comments,
