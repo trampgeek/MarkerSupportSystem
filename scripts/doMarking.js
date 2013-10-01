@@ -131,6 +131,7 @@
     }
 
 
+    // Bind all events when document ready
     $(document).ready(function () {
         $('.markcombo').change(comboChanged);
         $('.item-checkbox,#bonus,.weight').change(computeAll);
