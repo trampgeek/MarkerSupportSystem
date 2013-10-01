@@ -53,7 +53,7 @@ foreach ($categoryList as $category) {
         }
         $value = form_prep($comment);
         echo "<tr class='$type'><td class='description'>" .
-        "<textarea id='$idName' class='comment' height='1' width='80' name='$descName'" .
+        "<textarea id='$idName' class='comment' rows='1' cols='80' name='$descName'" .
          " title='$value' >$value</textarea>" .
          "<input type='hidden' name='tc$id' id='tc$id' value=''/></td>";
         $cbid = "cb" . $markItem->id;
@@ -67,7 +67,7 @@ foreach ($categoryList as $category) {
         echo "</tr>\n";
     }
 
-    echo "</table></p>\n";
+    echo "</table>\n";
 
     echo "<input type='button' class='add-comment-button' id='add$catId' value='+' />";
     echo "<input type='button' class='remove-comment-button' id='remove$catId' value='-' />";
@@ -80,13 +80,13 @@ echo "<tr><td>Bonus:</td><td><input type='text' name='bonus' id='bonus'
         value='{$marksheet->bonus}' /></td></tr>\n";
 echo "<tr><td>TOTAL MARK:</td><td><input type='text' id='markTotal'" .
      " readonly='readonly'" .
-     " value='{$marksheet->markTotal}' name='markTotal' /></tr</td>\n";
+     " value='{$marksheet->markTotal}' name='markTotal'></td></tr>\n";
 echo "</table>\n";
 
 ?>
 
 <?php echo form_submit('submitmark', 'Submit'); ?>
-</p>
+
 <?php echo form_close(); ?>
 </div>
 

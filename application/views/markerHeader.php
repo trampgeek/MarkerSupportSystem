@@ -1,12 +1,14 @@
 <?php
 // The standard header for all views. Takes $title as parameter.
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 // LET THE OUTPUT BEGIN ....
-echo doctype('html');
+echo doctype('html5');
 ?>
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<html>
     <head>
         <?php echo meta('Content-type', 'text/html; charset=utf-8', 'equiv'); ?>
         <title><?php echo $title; ?></title>

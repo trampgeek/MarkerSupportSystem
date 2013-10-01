@@ -59,7 +59,7 @@ else {
                 echo "<div class='comment'>$comment</div>\n";
             }
             elseif ($maxMark == 0) {
-                echo "<tr><td class='noweight_comment'>$comment</td></tr>\n";
+                echo "<tr><td colspan='3' class='noweight_comment'>$comment</td></tr>\n";
             }
             else if ($displayType == 'FULL') {
                 echo "<tr><td class='commentcol'>$comment</td><td class='mark'>$mark</td><td class='outof'>$maxMark</td></tr>\n";
