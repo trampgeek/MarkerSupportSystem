@@ -206,17 +206,13 @@ class Marker extends CI_Controller {
             elseif (preg_match('|^xcb([0-9]+)$|', $fieldName, $matches)) {
                 // A newly added markitem (must be a comment)
                 $markItemId = $matches[1];
-                $persists = isset($fields['persist'.$markItemId]);
+                $persists = isset($fields['persist' . $markItemId]);
                 $this->processNewMarkitem($markItemId, $fields, TRUE, $persists);
             }
-            elseif (preg_match('|^persist([0-9]+)$|', $fieldName, $matches)) {
-                // A new mark item with the 'persists' checkbox set.
+            elseif (preg_match('|^discontinue([0-9]+)$|', $fieldName, $matches)) {
+                // An old mark item with the 'discontinue' checkbox set.
                 $markItemId = $matches[1];
-                $alreadyProcessed = isset($fields['xcb'.$markItemId]);
-                if (!$alreadyProcessed) {
-                    // Comment this out until I've debugged it properly
-                    // $this->processNewMarkitem($markItemId, $fields, FALSE, TRUE);
-                }
+                $this->markitems->discontinue($markItemId);
             }
         }
         return array($rewards, $penalties);

@@ -33,6 +33,15 @@ class Markitems extends CI_Model {
     }
 
 
+    /**
+     * Write this object back to the database
+     */
+    public function update() {
+        $this->db->where('id', $this->id);
+        $this->db->update('mark_items', $this);
+    }
+
+
     /** Add a new mark item relating to a given assignment. Return its id. */
     public function insertItem($assignmentId, $catId, $comment, $mark,
                                 $markerId = 0, $persistent = 1) {
@@ -46,6 +55,16 @@ class Markitems extends CI_Model {
             )
         );
         return $this->db->insert_id();
+    }
+
+    /**
+     * Mark the given markitem as non-persistent.
+     * @param type $id The markitem id to have its persistent flag cleared
+     */
+    public function discontinue($id) {
+        $this->loadById($id);
+        $this->persistent = 0;
+        $this->update();
     }
 
 

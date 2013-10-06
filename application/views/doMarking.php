@@ -57,9 +57,13 @@ foreach ($categoryList as $category) {
          " title='$value' >$value</textarea>" .
          "<input type='hidden' name='tc$id' id='tc$id' value=''/></td>";
         $cbid = "cb" . $markItem->id;
+        $discontinueId = "discontinue" . $markItem->id;
         echo "<td><input type='checkbox' class='item-checkbox' id='$cbid' name='$cbid' $checked";
         echo "/></td><td class='mark' id='mark{$markItem->id}'>{$markItem->mark}</td>";
-        if ($markItem->mark != 0) {
+        if ($markItem->mark == 0) {
+             echo "<td><input type='checkbox' class='item-discontinue-checkbox' " .
+                     "id='$discontinueId' name='$discontinueId'/>Discontinue";
+        } else {
             $name = $cbid . 'wt';
             echo "<td class='weight'>" . makeMarkField($name, $weight, $preferred) . "</td>";
         }
