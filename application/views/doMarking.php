@@ -62,7 +62,10 @@ foreach ($categoryList as $category) {
         echo "/></td><td class='mark' id='mark{$markItem->id}'>{$markItem->mark}</td>";
         if ($markItem->mark == 0) {
              echo "<td><input type='checkbox' class='item-discontinue-checkbox' " .
-                     "id='$discontinueId' name='$discontinueId'/>Discontinue";
+                     "id='$discontinueId' name='$discontinueId' ".
+                     "title='If checked, after this sheet is saved, the comment " .
+                     "will not be shown on mark sheets unless already in use.'" .
+                     "/>Discontinue";
         } else {
             $name = $cbid . 'wt';
             echo "<td class='weight'>" . makeMarkField($name, $weight, $preferred) . "</td>";
