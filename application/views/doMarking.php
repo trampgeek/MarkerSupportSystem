@@ -66,7 +66,7 @@ foreach ($categoryList as $category) {
                      "title='If checked, after this sheet is saved, the comment " .
                      "will not be shown on mark sheets unless already in use.'" .
                      "/>Discontinue";
-        } else {
+        } else if ($markItem->mark != 0) {
             $name = $cbid . 'wt';
             echo "<td class='weight'>" . makeMarkField($name, $weight, $preferred) . "</td>";
         }
