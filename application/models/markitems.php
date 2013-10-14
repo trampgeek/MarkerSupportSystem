@@ -113,7 +113,7 @@ class Markitems extends CI_Model {
         }
 
         // Now get all the referenced mark items for this marksheet
-        $this->db->select('mark_items.id, comment, mark')
+        $this->db->select('mark_items.id, mark_items.markerId, comment, mark')
                  ->from('mark_items')
                  ->join('marksheet_mark_items', 'markItemId = mark_items.id')
                  ->where(array(
@@ -136,7 +136,8 @@ class Markitems extends CI_Model {
      *  id.
      */
     public function getSelectedItems($marksheetId) {
-        $this->db->select('mark_items.id as markItemId, mark, weight, comment, commentOverride')
+        $this->db->select('mark_items.id as markItemId,
+                           mark, markerId, weight, comment, commentOverride')
                  ->from('marksheet_mark_items')
                  ->join('mark_items', 'markItemId=mark_items.id')
                  ->where(array(
