@@ -399,6 +399,7 @@ class Marker extends CI_Controller {
             $this->student->loadById($sheet->studentId);
             $mark = $this->computeMark($sheet->id);
             $row = array('username' => $this->student->username,
+                         'marker'   => $sheet->marker,
                          'name'     => $this->student->name,
                          'mark'     => $mark);
             if (abs($mark - $sheet->markTotal) > MAX_ERROR) {

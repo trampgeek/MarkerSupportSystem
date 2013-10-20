@@ -1,7 +1,7 @@
 <?php
-echo "username,name,mark<br />";
+echo "username,marker,name,mark<br />";
 foreach ($marks as $row) {
-    $line = $row['username'] . ',' . $row['name'] . ',' . $row['mark'];
+    $line = $row['username'] . ',' . $row['marker'] . ',' . $row['name'] . ',' . $row['mark'];
     if (isset($row['error'])) {
         $line .= ',' . $row['error'];
     }
