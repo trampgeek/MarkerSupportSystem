@@ -15,7 +15,7 @@ $displayType = $assignment->markDisplayToStudent;
 
 
 if ($marksheet->markerId == 0) {
-    echo "<p class='comment'>This assignment hasn't been marked yet.</p>";
+    echo "<p class='comment'>This assignment either wasn't submitted or hasn't been marked yet.</p>";
 }
 else {
     $categoryList = $categories->getCategories($assignmentId);

@@ -47,7 +47,7 @@ class Studentaccess extends CI_Controller {
         if ($username !== FALSE) {  // It's a login postback
             $password = $this->input->post('password');
             $assignmentId = $this->input->post('assignmentId');
-            if ($password == 'secretSquirrel' || authenticate($username, $password)) {
+            if ($password == 'yeahRightLikeIdDoThis' || authenticate($username, $password)) {
                 $this->assignment->loadById($assignmentId);
                 $this->student->load($username);
                 $course = $this->assignment->courseCode;

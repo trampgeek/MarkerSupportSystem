@@ -115,7 +115,7 @@ class Admin extends CI_Controller {
                     $this->assignment->$field = $this->input->post($field);
                 }
                 $this->assignment->update();
-                // $this->markers->deleteMarkers($id);
+                // $this->markers->deleteMarkers($id); // Mustn't delete as changes marker ids
                 $this->markers->insertList($id, $markers);
             }
             $this->_header('Assignment Marking System (Admin)');
@@ -267,13 +267,17 @@ class Admin extends CI_Controller {
     // ==================================
     //
 
-    /** Extract an array of marker usernames for a comma-separated list */
+    /** Extract an array of marker usernames from a comma-separated list */
     private function extractMarkers($s) {
         $bits = explode(',', $s);
-        for ($i = 0; $i < count($bits); $i++) {
-            $bits[$i] = trim($bits[$i]);
+        $markers = array();
+        foreach ($bits as $bit) { 
+            $username = trim($bit);
+            if ($username !== '') {
+                $markers[] = $username;
+            }
         }
-        return $bits;
+        return $markers;
     }
 
 

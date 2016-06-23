@@ -66,6 +66,7 @@ class ExternalGradeTable extends CI_Model {
                     }
                     $total = $row[$numMarkItems + 2];
                     $marksheetModel->markTotal = $total;
+		    $marksheetModel->markerId = 1;
                     $marksheetModel->update();
                 }
             }
